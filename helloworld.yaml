@@ -7,7 +7,7 @@ metadata:
   tags:
     - azure
 spec:
-  owner: nietakipawel
+  owner: Mahes
   type: service
   parameters:
     - title: You are about to request access to a shared team key/value store in Vault
@@ -23,8 +23,8 @@ spec:
       name: Run onboarding
       action: github:actions:dispatch
       input:
-        repoUrl: 'github.com?repo=backstage_playground&owner=CloudSpotPL'
-        workflowId: 'blank.yaml'
+        repoUrl: 'github.com?repo=backstage&owner=maheswaran-hub'
+        workflowId: 'hello.yaml'
         branchOrTagName: 'main'
         workflowInputs:
           azure_object_id: ${{ parameters.azure_object_id }}
