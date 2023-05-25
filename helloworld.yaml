@@ -1,26 +1,34 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: hello-world-template
-  title: Hello World
-  description: Says Hello to a specified name.
+  name: onboarding
+  title: Azure Onboarding - Mahes
+  description: Onboard to Azure
+  tags:
+    - azure
 spec:
-  owner: backstage/techdocs-core
+  owner: nietakipawel
   type: service
-
   parameters:
-    - title: You are about to say hello to your first Backstage Template
+    - title: You are about to request access to a shared team key/value store in Vault
       required:
-        - name
+        - azure_object_id
       properties:
-        name:
+        azure_object_id:
+          title: Object ID for your team
           type: string
-
+          description: The object ID for the group in Azure active directory that matches your team
   steps:
-    - id: log-message
-      name: Log Message
-      action: debug:log
+    - id: run-onboarding
+      name: Run onboarding
+      action: github:actions:dispatch
       input:
-        message: 'Hello, ${{ parameters.name }}!'
-
-
+        repoUrl: 'github.com?repo=backstage_playground&owner=CloudSpotPL'
+        workflowId: 'blank.yaml'
+        branchOrTagName: 'main'
+        workflowInputs:
+          azure_object_id: ${{ parameters.azure_object_id }}
+  output:
+    links:
+      - title: Check status of your onboarding at
+        url: https://github.com/CloudSpotPL/backstage_playground/actions
