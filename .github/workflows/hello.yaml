@@ -1,12 +1,13 @@
 on:
-  workflow_dispatch:
-    inputs:
-      azure_object_id:
-        description: 'Azure AD group object ID'
-        required: true
+  workflow_dispatch:
+    inputs:
+      azure_object_id:
+        description: 'Azure AD group object ID'
+        required: true
 permissions:
-  id-token: write
-  contents: read
+  id-token: write
+  contents: read
+
 name: hello-world
 jobs:
   my-job:
